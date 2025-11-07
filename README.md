@@ -67,8 +67,8 @@ This template is not still available, but we document the method to use it in th
 * you can automatize your restic backup using crontab commands:
     ```
     40 02  * * *  bash -l -c "[ -f /var/log/restic_backup.log ] || echo '{}' > /var/log/restic_backup.log"
-    45 02  * * *  bash -l -c "restic --json --quiet backup /folder1 | jq -c --slurpfile input /dev/stdin '. + {maindata: $input[0]}' /var/log/restic_backup.log > /tmp/$$.restic.log && mv -f /tmp/$$.restic.log /var/log/restic_backup.log"
-    00 13  * * *  bash -l -c "restic --json --quiet backup /folder2 | jq -c --slurpfile input /dev/stdin '. + {auxdata:  $input[0]}' /var/log/restic_backup.log > /tmp/$$.restic.log && mv -f /tmp/$$.restic.log /var/log/restic_backup.log"
+    45 02  * * *  bash -l -c "restic --json --quiet backup /folder1 | jq -c --slurpfile input /dev/stdin '. + {maindata: \$input[0]}' /var/log/restic_backup.log > /tmp/$$.restic.log && mv -f /tmp/$$.restic.log /var/log/restic_backup.log"
+    00 13  * * *  bash -l -c "restic --json --quiet backup /folder2 | jq -c --slurpfile input /dev/stdin '. + {auxdata:  \$input[0]}' /var/log/restic_backup.log > /tmp/$$.restic.log && mv -f /tmp/$$.restic.log /var/log/restic_backup.log"
     ```
   this method keeps always last result of each backup execution in the json object stored in /var/log/restic_backup.log keeping this results in a diferent property for each backup executed.
   
