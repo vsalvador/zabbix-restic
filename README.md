@@ -56,7 +56,6 @@ Note: I don't delete the simple versión of templates to keep compatibility with
 * you can automatize your restic backup using crontab commands:
     ```
     45 02  * * *  bash -l -c "restic --json --quiet backup /folder1 | jq -c '. + {profile: \"maindata\"}' > /var/log/restic_backup.log"
-    00 13  * * *  bash -l -c "restic --json --quiet backup /folder2 | jq -c '. + {profile: \"auxdata\"}' >> /var/log/restic_backup.log"
     ```
   you can add to log file the results of several backup commands. Just keep in mind you should provide different profile names.
 
